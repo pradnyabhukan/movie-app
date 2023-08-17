@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Mate+SC&family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dai+Banna+SIL:wght@300&family=Libre+Baskerville&family=Mate+SC&family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  color: white !important;
+  background-color: black !important;
+}
+
+.home-body {
+  /* background: linear-gradient(
+      to bottom,
+      #27374D,
+      #000000
+      )  */
+      background: linear-gradient(
+        to bottom,
+        #000000,
+        #000000
+        ) 
+}
+
+.movie-page{
+  background-color: #000000;
+}
+
+.bg-image {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blur-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 260px; 
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8),  rgba(0, 0, 0, 1));
+  filter: blur(0px); 
+} 
+
+
+.custom-card{
+  z-index: 1;
+  margin-top: 35%;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  bottom: 0;
+  border-radius: 15px;
+  /* align-items: center; */
+}
+
+.overflow-content{
+  background-color: black;
+}
+
+.custom-heading{
+  font-family: 'Mate SC', serif;
+}
+
+.custom-title{
+  font-family: 'Dai Banna SIL', serif;
+}
+
+.custom-text{
+  font-family: 'Roboto';
+  font-size: 18px;
+}
+
+/* Define your genre-button styles here */
+.genre-button {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 2px;
+  /* border:2px solid whitesmoke; */
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+[data-genre-id="28"] {
+  background-color: #e74c3c; /* Action */
+}
+
+[data-genre-id="12"] {
+  background-color: #3498db; /* Drama */
+}
+
+[data-genre-id="878"] {
+  background-color: #0b4825; /* Fiction */
+}
+
+[data-genre-id="53"] {
+  background-color: #002347; /* Thriller */
+}
+
+[data-genre-id="35"] {
+  background-color: rgb(230, 126, 34); /* Comedy */
+}
+
+[data-genre-id="14"] {
+  background-color: #59365c; /* Fantasy */
+}
+
+[data-genre-id="10751"] {
+  background-color: #004B57; /* Family */
+}
+
+[data-genre-id="10749"] {
+  background-color: rgb(181, 126, 220); /* Romance */
+}
+
+[data-genre-id="16"] {
+  background-color: rgb(0, 204, 102); /* Animation */
+}
+
+[data-genre-id="27"] {
+  background-color:  rgb(111, 52, 52); /* Horror */
+}
+
+[data-genre-id="80"] {
+  background-color:  rgb(128, 128, 128); /* Horror */
+}
+
+[data-genre-id="18"] {
+  background-color:  rgb(128, 94, 162); /* drama */
+}
+
+[data-genre-id="10752"] {
+  background-color:  rgb(107, 87, 56); /* war */
+}
+
+[data-genre-id="36"] {
+  background-color:  rgb(73, 42, 11); /* History */
+}
+
+[data-genre-id="9648"] {
+  background-color:  rgb(39, 174, 96); /* mystry */
+}
+
+/* rating */
+.starRating {
+  display: inline-block;
+}
+
+.starFilled {
+  color: gold; /* Change this to your desired color */
+}
+
+.starEmpty {
+  color: gray; /* Change this to your desired color */
+}
+
+.background-image {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: block;
+  background-image: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80');
+  height: 100%;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  background-size: contain;
+  background-position: bottom;
+}
+
+.content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* navbar */
+.navbar{
+  z-index: 1;
+}
