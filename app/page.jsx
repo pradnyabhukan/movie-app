@@ -8,16 +8,16 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "./Navbar";
 
 export default function Home() {
-  // "https://api.themoviedb.org/3/movie/popular";
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [res, setRes] = useState(null);
   const [genres, setGenres] = useState(null);
   const [heading, setHeading] = useState("Most Popular Movies");
   const getData = async () => {
     const data = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
     );
     const genreList = await fetch(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`
     );
     setRes(await data.json());
     setHeading("Most Popular Movies");
@@ -41,7 +41,7 @@ export default function Home() {
       setHeading(`"${value}" results`);
       console.log(`Is this your value: ${value}`);
       const movieAPI = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${value}&api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+        `https://api.themoviedb.org/3/search/movie?query=${value}&api_key=${apiKey}`
       );
       const response = await movieAPI.json();
       console.log(response);
@@ -57,7 +57,7 @@ export default function Home() {
   const handleGenreClick = async (id, name) => {
     setDropdownOpen(false);
     const searchByGenre = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&with_genres=${id}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${id}`
     );
     const genreResponse = await searchByGenre.json();
     setHeading(`${name} Movies`);

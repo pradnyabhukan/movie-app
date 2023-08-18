@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 
 export default async function MovieDetail(params) {
-
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const {
     params: { movie },
   } = params; //access movie id
@@ -9,7 +9,7 @@ export default async function MovieDetail(params) {
 
   // fetching basic movie data
   const data = await fetch(
-    `https://api.themoviedb.org/3/movie/${movie}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+    `https://api.themoviedb.org/3/movie/${movie}?api_key=${apiKey}`,
     { next: { revalidate: 0 } }
   );
   const res = await data.json();
@@ -27,7 +27,7 @@ export default async function MovieDetail(params) {
 
   //fetch movie credits
   const creditsData = await fetch(
-    `https://api.themoviedb.org/3/movie/${movie}/credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+    `https://api.themoviedb.org/3/movie/${movie}/credits?api_key=${apiKey}`
   );
   const credits = await creditsData.json();
 
@@ -43,7 +43,7 @@ export default async function MovieDetail(params) {
 
   //fetch videos
   const trailerData = await fetch(
-    `https://api.themoviedb.org/3/movie/${movie}/videos?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+    `https://api.themoviedb.org/3/movie/${movie}/videos?api_key=${apiKey}`
   );
   const trailer = await trailerData.json();
   const key = trailer?.results
