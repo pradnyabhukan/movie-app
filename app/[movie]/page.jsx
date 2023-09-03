@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 
-export default async function MovieDetail(params) {
+export default async function Movie(params) {
+  console.log("inside movie details page")
   const NEXT_PUBLIC_API_KEY="3db13c45f774db248e51df9c1728e382"
   const apiKey = NEXT_PUBLIC_API_KEY;
   const {

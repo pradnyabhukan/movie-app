@@ -137,15 +137,12 @@ export default function Home() {
               ?.filter((result) => result.poster_path !== null)
               ?.map((movie) => (
                 <div className="d-flex col mb-4" key={movie.id}>
-                    <Link href="/[movie]" as={`/${movie.id}`}>
                     <Movie
                       id={movie.id}
                       title={movie.title}
                       poster_path={movie.poster_path}
                       release_date={movie.release_date}
                     />
-                  </Link>
-                  
                 </div>
               ))}
           </div>
