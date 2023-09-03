@@ -8,6 +8,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "./Navbar";
 
 export default function Home() {
+  const NEXT_PUBLIC_API_KEY = "3db13c45f774db248e51df9c1728e382"
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [res, setRes] = useState(null);
   const [genres, setGenres] = useState(null);
@@ -26,7 +27,7 @@ export default function Home() {
   useEffect(() => {
     getData();
   }, []);
-
+  console.log(res);
   const handleSubmit = async (event) => {
     // Stop the form from submitting and refreshing the page.
     event.preventDefault();
