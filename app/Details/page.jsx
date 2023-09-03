@@ -1,22 +1,47 @@
+"use client";
 import "bootstrap/dist/css/bootstrap.css";
+// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
+import { useEffect } from "react";
+import { useState } from "react";
+export default function MovieDetails() {
 
-export default async function Movie(params) {
-  console.log("inside movie details page")
+  const movie = localStorage.getItem("id");
+  // console.log(movieId);
+
+  const [movieData, setMovieData] = useState(null);
+  const [creditsData, setCreditsData] = useState(null);
+  const [trailerData, setTrailerData] = useState(null);
+  // const [movieData, setMovieData] = useState();
+
   const NEXT_PUBLIC_API_KEY="3db13c45f774db248e51df9c1728e382"
   const apiKey = NEXT_PUBLIC_API_KEY;
-  const {
-    params: { movie },
-  } = params; //access movie id
-  // console.log(title)
 
-  // fetching basic movie data
-  const data = await fetch(
-    `https://api.themoviedb.org/3/movie/${movie}?api_key=${apiKey}`,
-    { next: { revalidate: 0 } }
-  );
-  const res = await data.json();
+  const getData = async() =>{
+    const data = await fetch(
+      `https://api.themoviedb.org/3/movie/${movie}?api_key=${apiKey}`,
+      { next: { revalidate: 0 } }
+    );
+    const movieData = await data.json();
+    setMovieData(movieData);
+
+//credits
+    const cData = await fetch(
+      `https://api.themoviedb.org/3/movie/${movie}/credits?api_key=${apiKey}`
+    );
+    const credits = await cData.json();
+    setCreditsData(credits);
+
+//trailerData
+    const tData = await fetch(
+      `https://api.themoviedb.org/3/movie/${movie}/videos?api_key=${apiKey}`
+    );
+    const trailerData = await tData.json();
+    setTrailerData(trailerData);
+  }
+
   //genres
-  const genresArray = res.genres;
+  const genresArray = movieData?.genres;
   // Map the genre names to an array of <li> elements
   const genresList = genresArray?.map((genre) => (
     <li key={genre.id}>{genre.name}</li>
@@ -24,31 +49,25 @@ export default async function Movie(params) {
 
   //background image
   const imgPath = "https://image.tmdb.org/t/p/original";
-  const bgImg = imgPath + res.backdrop_path;
-  const posterImage = imgPath + res.poster_path;
+  const bgImg = imgPath + movieData?.backdrop_path;
+  const posterImage = imgPath + movieData?.poster_path;
 
   //fetch movie credits
-  const creditsData = await fetch(
-    `https://api.themoviedb.org/3/movie/${movie}/credits?api_key=${apiKey}`
-  );
-  const credits = await creditsData.json();
+  
 
-  const directors = credits?.crew
+  const directors = creditsData?.crew
     ?.filter((crew_member) => crew_member.job === "Director")
     .map((director) => director.name);
 
-  const writerSet = new Set(credits?.crew
+  const writerSet = new Set(creditsData?.crew
     ?.filter((crew_member) => crew_member.known_for_department === "Writing")
     .map((writer) => writer.name));
 
   const writers = [ ...writerSet]
 
   //fetch videos
-  const trailerData = await fetch(
-    `https://api.themoviedb.org/3/movie/${movie}/videos?api_key=${apiKey}`
-  );
-  const trailer = await trailerData.json();
-  const key = trailer?.results
+
+  const key = trailerData?.results
     ?.filter((result) => result.name === "Official Trailer")
     .map((video) => video.key);
   // console.log("yt key:", key);
@@ -60,7 +79,11 @@ export default async function Movie(params) {
   
 
   const totalStars = 10;
-  const filledStars = Math.round(res.vote_average);
+  const filledStars = Math.round(movieData?.vote_average);
+
+  useEffect(()=>{
+    getData();
+  },[])
 
   return (
     <div className="bg-image" style={divStyle}>
@@ -71,7 +94,7 @@ export default async function Movie(params) {
           <h1 className="display-1 custom-heading">{directors}</h1>
         </div>
         <div className="d-flex justify-content-between py-3">
-          <h2 className="custom-title">{res?.title}</h2>
+          <h2 className="custom-title">{movieData?.title}</h2>
           <h4 className="">
             {genresArray?.map((genre) => (
               <div
@@ -104,7 +127,7 @@ export default async function Movie(params) {
           ))}
         </div>
         <p className=" pt-3 custom-text">Writers : {writers.join(', ')}</p>
-        <p className="custom-text">{res?.overview}</p>
+        <p className="custom-text">{movieData?.overview}</p>
       </div>
     </div>
   );

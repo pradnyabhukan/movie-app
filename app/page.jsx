@@ -25,10 +25,15 @@ export default function Home() {
     setHeading("Most Popular Movies");
     setGenres(await genreList.json());
   };
+
+  const handleLocalStorage = (id) =>{
+    localStorage.setItem("id", id);
+    console.log("id from local storage : ", localStorage.getItem("id"));
+  }
+
   useEffect(() => {
     getData();
   }, []);
-  console.log(res);
   const handleSubmit = async (event) => {
     // Stop the form from submitting and refreshing the page.
     event.preventDefault();
@@ -115,7 +120,6 @@ export default function Home() {
               </button>
               <div className={`dropdown-menu${isDropdownOpen ? " show" : ""}`}>
                 {genres?.genres.map((genre) => {
-                  console.log("genre : ", genre);
                   return (
                     <a
                       className="dropdown-item"
@@ -136,7 +140,7 @@ export default function Home() {
             {res?.results
               ?.filter((result) => result.poster_path !== null)
               ?.map((movie) => (
-                <div className="d-flex col mb-4" key={movie.id}>
+                <div className="d-flex col mb-4" key={movie.id} onClick={()=>{handleLocalStorage(movie.id)}}>
                     <Movie
                       id={movie.id}
                       title={movie.title}
