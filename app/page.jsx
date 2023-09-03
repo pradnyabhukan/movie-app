@@ -9,7 +9,7 @@ import Navbar from "./Navbar";
 
 export default function Home() {
   const NEXT_PUBLIC_API_KEY = "3db13c45f774db248e51df9c1728e382"
-  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  const apiKey = NEXT_PUBLIC_API_KEY;
   const [res, setRes] = useState(null);
   const [genres, setGenres] = useState(null);
   const [heading, setHeading] = useState("Most Popular Movies");

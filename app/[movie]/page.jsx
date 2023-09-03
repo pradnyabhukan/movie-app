@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 export default async function MovieDetail(params) {
   const NEXT_PUBLIC_API_KEY="3db13c45f774db248e51df9c1728e382"
-  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  const apiKey = NEXT_PUBLIC_API_KEY;
   const {
     params: { movie },
   } = params; //access movie id
