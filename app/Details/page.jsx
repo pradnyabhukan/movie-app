@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 export default function MovieDetails() {
 
-  const movie = localStorage.getItem("id");
+  const movie = sessionStorage.getItem("id");
   // console.log(movieId);
 
   const [movieData, setMovieData] = useState(null);

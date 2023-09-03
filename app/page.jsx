@@ -27,8 +27,8 @@ export default function Home() {
   };
 
   const handleLocalStorage = (id) =>{
-    localStorage.setItem("id", id);
-    console.log("id from local storage : ", localStorage.getItem("id"));
+    sessionStorage.setItem("id", id);
+    console.log("id from local storage : ", sessionStorage.getItem("id"));
   }
 
   useEffect(() => {
