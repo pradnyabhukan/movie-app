@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "./Navbar";
+import Link from "next/link";
 
 export default function Home() {
   const NEXT_PUBLIC_API_KEY = "3db13c45f774db248e51df9c1728e382"
@@ -136,12 +137,15 @@ export default function Home() {
               ?.filter((result) => result.poster_path !== null)
               ?.map((movie) => (
                 <div className="d-flex col mb-4" key={movie.id}>
-                  <Movie
-                    id={movie.id}
-                    title={movie.title}
-                    poster_path={movie.poster_path}
-                    release_date={movie.release_date}
-                  />
+                    <Link href="/[movie]" as={`/${movie.id}`}>
+                    <Movie
+                      id={movie.id}
+                      title={movie.title}
+                      poster_path={movie.poster_path}
+                      release_date={movie.release_date}
+                    />
+                  </Link>
+                  
                 </div>
               ))}
           </div>
