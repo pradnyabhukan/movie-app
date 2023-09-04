@@ -6,7 +6,10 @@ import { useEffect } from "react";
 import { useState } from "react";
 export default function MovieDetails() {
 
-  const movie = sessionStorage.getItem("id");
+  let movie = 0; 
+  if (typeof window !== "undefined") {
+    movie = window.sessionStorage.getItem("id");
+  }
   // console.log(movieId);
 
   const [movieData, setMovieData] = useState(null);

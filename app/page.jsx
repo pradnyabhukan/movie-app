@@ -27,8 +27,11 @@ export default function Home() {
   };
 
   const handleLocalStorage = (id) =>{
-    sessionStorage.setItem("id", id);
-    console.log("id from local storage : ", sessionStorage.getItem("id"));
+    if (typeof window !== "undefined") {
+      window.sessionStorage.setItem("id", id);
+      console.log("id from local storage : ", sessionStorage.getItem("id"));
+    }
+    
   }
 
   useEffect(() => {
