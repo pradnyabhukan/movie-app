@@ -1,1 +1,1 @@
-created using next js
+https://pradnyabhukan.github.io/movie-app/
